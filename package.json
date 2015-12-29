@@ -1,0 +1,39 @@
+{
+  "name": "ibex-react-redux",
+  "version": "1.0.0",
+  "description": "render with react and redux in ibex",
+  "main": "lib/index.js",
+  "jspm": {
+    "main": "browser/lib/index.js",
+    "lib": "browser/"
+  },
+  "scripts": {
+    "test": "make test",
+    "lint": "make lint",
+    "build": "make build",
+    "postpublish": "make post-publish",
+    "preversion": "make pre-version",
+    "version": "make version",
+    "watch": "make watch"
+  },
+  "repository": "alpjs/ibex-react",
+  "keywords": [
+    "alp",
+    "ibex"
+  ],
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpjs/ibex-react-redux/issues"
+  },
+  "homepage": "https://github.com/alpjs/ibex-react-redux#readme",
+  "devDependencies": {
+    "springbokjs-library": "^12.3.0"
+  },
+  "dependencies": {
+    "fody": "^1.0.0",
+    "fody-redux": "^1.0.0",
+    "redux": "^3.0.5",
+    "nightingale": "^2.1.0"
+  }
+}
