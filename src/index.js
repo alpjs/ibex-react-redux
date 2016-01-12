@@ -44,5 +44,7 @@ export default function ibexReactRedux({ View, reducers, initialData, element })
                 });
             });
         }
+
+        return context;
     };
 }
