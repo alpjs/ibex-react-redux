@@ -4,47 +4,39 @@ import render from 'fody';
 import App from 'fody-redux';
 import { createStore } from 'redux';
 
-const logger = new ConsoleLogger('ibex.react');
+const logger = new ConsoleLogger('ibex.react-redux');
 
-export default function ibexReactRedux({ View, reducers, initialData, element }) {
+export default function ibexReactRedux({ appDescriptor, initialData, element }) {
     return (app) => {
-        app.context.render = function (View, data) {
-            logger.debug('render view', { viewName: View.name, data });
+        app.context.render = function (appDescriptor, data) {
+            logger.debug('render view', { data });
 
-            if (!View) {
+            if (!appDescriptor.View) {
                 throw new Error('View is undefined, class expected');
             }
 
-            throw new Error('TODO');
-        };
+            const context = Object.create(app.context);
+            const store = createStore(appDescriptor.app, initialData);
+            context.store = store;
 
-        const context = Object.create(app.context); // initial context.
-        const store = createStore(reducers, initialData);
-        context.store = store;
-
-        if (document.readyState === 'complete') {
-            logger.debug('load react components, document is already ready');
             render({
                 context,
-                Component: View,
-                data: initialData,
+                View: appDescriptor.View,
+                data,
                 element,
                 App,
             });
+        };
+
+        if (document.readyState === 'complete') {
+            logger.debug('load react components, document is already ready');
+            app.context.render(appDescriptor, initialData);
         } else {
             logger.debug('waiting document ready');
             $document.on('DOMContentLoaded', () => {
                 logger.debug('load react components, document is ready');
-                render({
-                    context,
-                    Component: View,
-                    data: initialData,
-                    element,
-                    App,
-                });
+                app.context.render(appDescriptor, initialData);
             });
         }
-
-        return context;
     };
 }

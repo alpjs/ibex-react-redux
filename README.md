@@ -12,3 +12,7 @@ reactredux({
     element: document.getElementById('app'),
 })(app);
 ```
+
+## debug
+
+`DEBUG=ibex.react-redux`

@@ -17,57 +17,59 @@ var _fodyRedux2 = _interopRequireDefault(_fodyRedux);
 
 var _redux = require('redux');
 
+/**
+ * @function
+ * @param obj
+*/
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* global $document */
 
-var logger = new _nightingale.ConsoleLogger('ibex.react');
+var logger = new _nightingale.ConsoleLogger('ibex.react-redux');
 
-function ibexReactRedux(_ref) {
-    var View = _ref.View;
-    var reducers = _ref.reducers;
+/**
+ * @function
+ * @param
+*/function ibexReactRedux(_ref) {
+    var appDescriptor = _ref.appDescriptor;
     var initialData = _ref.initialData;
     var element = _ref.element;
 
     return function (app) {
-        app.context.render = function (View, data) {
-            logger.debug('render view', { viewName: View.name, data: data });
+        app.context.render = /**
+                              * @function
+                              * @param appDescriptor
+                              * @param data
+                             */function (appDescriptor, data) {
+            logger.debug('render view', { data: data });
 
-            if (!View) {
+            if (!appDescriptor.View) {
                 throw new Error('View is undefined, class expected');
             }
 
-            throw new Error('TODO');
-        };
+            var context = Object.create(app.context);
+            var store = (0, _redux.createStore)(appDescriptor.app, initialData);
+            context.store = store;
 
-        var context = Object.create(app.context); // initial context.
-        var store = (0, _redux.createStore)(reducers, initialData);
-        context.store = store;
-
-        if (document.readyState === 'complete') {
-            logger.debug('load react components, document is already ready');
             (0, _fody2.default)({
                 context: context,
-                Component: View,
-                data: initialData,
+                View: appDescriptor.View,
+                data: data,
                 element: element,
                 App: _fodyRedux2.default
             });
+        };
+
+        if (document.readyState === 'complete') {
+            logger.debug('load react components, document is already ready');
+            app.context.render(appDescriptor, initialData);
         } else {
             logger.debug('waiting document ready');
             $document.on('DOMContentLoaded', function () {
                 logger.debug('load react components, document is ready');
-                (0, _fody2.default)({
-                    context: context,
-                    Component: View,
-                    data: initialData,
-                    element: element,
-                    App: _fodyRedux2.default
-                });
+                app.context.render(appDescriptor, initialData);
             });
         }
-
-        return context;
     };
 }
 //# sourceMappingURL=index.js.map
