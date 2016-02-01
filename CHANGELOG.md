@@ -1,3 +1,8 @@
+### v2.2.0
+
+- [`cd9dfcd`](https://github.com/alpjs/ibex-react-redux/commit/cd9dfcdd5fccd7efbd987a665c6980253fb44119) upgrade nightingale (Christophe Hurpeau)
+
+
 ### v2.1.0
 
 - [`03e81ba`](https://github.com/alpjs/ibex-react-redux/commit/03e81babda008f435e85f1a84afe36225a2a8d7e) upgrade dependencies (Christophe Hurpeau)
