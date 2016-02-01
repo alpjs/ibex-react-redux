@@ -1,1 +1,1 @@
-include node_modules/springbokjs-library/lib-node5-browser.mk
+include node_modules/springbokjs-library/lib-browser.mk
