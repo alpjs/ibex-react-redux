@@ -1,6 +1,6 @@
 {
   "name": "ibex-react-redux",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "render with react and redux in ibex",
   "main": "lib/index.js",
   "scripts": {
