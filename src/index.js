@@ -1,4 +1,3 @@
-/* global $document */
 import { ConsoleLogger } from 'nightingale';
 import render from 'fody';
 import App from 'fody-redux';
@@ -33,7 +32,7 @@ export default function ibexReactRedux({ appDescriptor, initialData, element }) 
             app.context.render(appDescriptor, initialData);
         } else {
             logger.debug('waiting document ready');
-            $document.on('DOMContentLoaded', () => {
+            document.addEventListener('DOMContentLoaded', () => {
                 logger.debug('load react components, document is ready');
                 app.context.render(appDescriptor, initialData);
             });
