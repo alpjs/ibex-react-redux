@@ -1,3 +1,7 @@
+### v2.3.1
+
+- [`6af05a2`](https://github.com/alpjs/ibex-react-redux/commit/6af05a2157ebdbf1d24a99ea89e2f1bfdd9cf947) fix document.addEventListener (Christophe Hurpeau)
+
 ### v2.3.0
 
 - [`a9145f2`](https://github.com/alpjs/ibex-react-redux/commit/a9145f2c1d9298246cccd02e82c1e594ae8ec79b) upgrade dependencies (Christophe Hurpeau)
