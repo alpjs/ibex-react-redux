@@ -1,3 +1,7 @@
+### v2.4.1
+
+- [`c84845b`](https://github.com/alpjs/ibex-react-redux/commit/c84845b2aefca29f3f03750304ab48d87d7fba6b) update dependencies for fixes (Christophe Hurpeau)
+
 ### v2.4.0
 
 - [`bc9919d`](https://github.com/alpjs/ibex-react-redux/commit/bc9919de25e74e5d349c027e1c7ff598208f8bbb) use replaceReducer and correctly clean and reinitialize state (Christophe Hurpeau)
