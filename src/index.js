@@ -5,6 +5,8 @@ import { createStore } from 'redux';
 
 const logger = new ConsoleLogger('ibex.react-redux');
 
+let store;
+
 export default function ibexReactRedux({ appDescriptor, initialData, element }) {
     return (app) => {
         app.context.render = function (appDescriptor, data) {
@@ -15,7 +17,17 @@ export default function ibexReactRedux({ appDescriptor, initialData, element }) 
             }
 
             const context = Object.create(app.context);
-            const store = createStore(appDescriptor.app, initialData);
+            if (store === undefined) {
+                store = createStore(appDescriptor.app, initialData);
+            } else {
+                // replace state
+                const state = store.getState();
+                Object.keys(state).forEach(key => delete state[key]);
+                Object.assign(state, initialData);
+
+                // replace reducer
+                store.replaceReducer(appDescriptor.app);
+            }
             context.store = store;
 
             render({
