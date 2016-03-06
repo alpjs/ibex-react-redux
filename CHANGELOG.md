@@ -1,3 +1,8 @@
+### v2.4.0
+
+- [`bc9919d`](https://github.com/alpjs/ibex-react-redux/commit/bc9919de25e74e5d349c027e1c7ff598208f8bbb) use replaceReducer and correctly clean and reinitialize state (Christophe Hurpeau)
+- [`bf4988b`](https://github.com/alpjs/ibex-react-redux/commit/bf4988b81f45a59f025a9d337e2f061c5ff30b5e) handle appDescriptor without reducer (Christophe Hurpeau)
+
 ### v2.3.1
 
 - [`6af05a2`](https://github.com/alpjs/ibex-react-redux/commit/6af05a2157ebdbf1d24a99ea89e2f1bfdd9cf947) fix document.addEventListener (Christophe Hurpeau)
