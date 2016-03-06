@@ -16,9 +16,12 @@ export default function ibexReactRedux({ appDescriptor, initialData, element }) 
                 throw new Error('View is undefined, class expected');
             }
 
-            const context = Object.create(app.context);
+            const reducer = appDescriptor.reducer || appDescriptor.app;
+
             if (store === undefined) {
-                store = createStore(appDescriptor.app, initialData);
+                if (appDescriptor.app) {
+                    store = createStore(reducer, initialData);
+                }
             } else {
                 // replace state
                 const state = store.getState();
@@ -26,12 +29,19 @@ export default function ibexReactRedux({ appDescriptor, initialData, element }) 
                 Object.assign(state, initialData);
 
                 // replace reducer
-                store.replaceReducer(appDescriptor.app);
+                if (reducer) {
+                    store.replaceReducer(reducer);
+                } else {
+                    store.replaceReducer((state, action) => state);
+                }
             }
-            context.store = store;
+
+            if (reducer) {
+                this.store = store;
+            }
 
             render({
-                context,
+                context: this,
                 View: appDescriptor.View,
                 data,
                 element,
@@ -39,14 +49,15 @@ export default function ibexReactRedux({ appDescriptor, initialData, element }) 
             });
         };
 
+        const context = Object.create(app.context);
         if (document.readyState === 'complete') {
             logger.debug('load react components, document is already ready');
-            app.context.render(appDescriptor, initialData);
+            context.render(appDescriptor, initialData);
         } else {
             logger.debug('waiting document ready');
             document.addEventListener('DOMContentLoaded', () => {
                 logger.debug('load react components, document is ready');
-                app.context.render(appDescriptor, initialData);
+                context.render(appDescriptor, initialData);
             });
         }
     };
