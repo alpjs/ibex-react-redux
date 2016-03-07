@@ -6,8 +6,7 @@ import reactredux from 'ibex-react-redux';
 
 const app = new Ibex();
 reactredux({
-    View: View,
-    reducers: myApp,
+    moduleDescriptor,
     initialData: window.__INITIAL_STATE__,
     element: document.getElementById('app'),
 })(app);

@@ -24,11 +24,12 @@
   },
   "homepage": "https://github.com/alpjs/ibex-react-redux#readme",
   "devDependencies": {
-    "springbokjs-library": "^14.0.1"
+    "eslint": "^1.10.3",
+    "springbokjs-library": "^15.0.0"
   },
   "dependencies": {
-    "fody": "^2.0.2",
-    "fody-redux": "^2.0.2",
+    "fody": "^3.0.0",
+    "fody-redux-app": "^3.0.0",
     "nightingale": "^3.0.5",
     "redux": "^3.3.1"
   }

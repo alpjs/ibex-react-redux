@@ -1,25 +1,26 @@
 import { ConsoleLogger } from 'nightingale';
 import render from 'fody';
-import App from 'fody-redux';
+import DefaultApp from 'fody-app';
+import ReduxApp from 'fody-redux-app';
 import { createStore } from 'redux';
 
 const logger = new ConsoleLogger('ibex.react-redux');
 
 let store;
 
-export default function ibexReactRedux({ appDescriptor, initialData, element }) {
+export default function ibexReactRedux({ moduleDescriptor, initialData, element }) {
     return (app) => {
-        app.context.render = function (appDescriptor, data) {
+        app.context.render = function (moduleDescriptor, data) {
             logger.debug('render view', { data });
 
-            if (!appDescriptor.View) {
+            if (!moduleDescriptor.View) {
                 throw new Error('View is undefined, class expected');
             }
 
-            const reducer = appDescriptor.reducer || appDescriptor.app;
+            const reducer = moduleDescriptor.reducer;
 
             if (store === undefined) {
-                if (appDescriptor.app) {
+                if (reducer) {
                     store = createStore(reducer, initialData);
                 }
             } else {
@@ -42,22 +43,22 @@ export default function ibexReactRedux({ appDescriptor, initialData, element }) 
 
             render({
                 context: this,
-                View: appDescriptor.View,
+                View: moduleDescriptor.View,
                 data,
                 element,
-                App,
+                App: reducer ? ReduxApp : DefaultApp,
             });
         };
 
         const context = Object.create(app.context);
         if (document.readyState === 'complete') {
             logger.debug('load react components, document is already ready');
-            context.render(appDescriptor, initialData);
+            context.render(moduleDescriptor, initialData);
         } else {
             logger.debug('waiting document ready');
             document.addEventListener('DOMContentLoaded', () => {
                 logger.debug('load react components, document is ready');
-                context.render(appDescriptor, initialData);
+                context.render(moduleDescriptor, initialData);
             });
         }
     };
