@@ -1,3 +1,15 @@
+### v3.0.0
+
+### Breaking Change
+
+The first argument of `render` is now `{ reducer, View }` instead of `{ app, View }`. If reducer is undefined, the fody-app is rendered and no store created.
+
+The init function is now `{ moduleDescriptor, initialData, element }` instead of `{ appDescriptor, initialData, element }`
+
+
+- [`5f6e92f`](https://github.com/alpjs/ibex-react-redux/commit/5f6e92f6c2891f360b11c03f817f896e2980a7c2) use fody-app and rename appDescriptor into moduleDescriptor (Christophe Hurpeau)
+
+
 ### v2.4.1
 
 - [`c84845b`](https://github.com/alpjs/ibex-react-redux/commit/c84845b2aefca29f3f03750304ab48d87d7fba6b) update dependencies for fixes (Christophe Hurpeau)
