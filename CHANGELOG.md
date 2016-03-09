@@ -1,3 +1,7 @@
+### v3.1.1
+
+- [`e636768`](https://github.com/alpjs/ibex-react-redux/commit/e636768e6adf9ad212a569e9de8f95539a7eda94) upgrade dependencies (Christophe Hurpeau)
+
 ### v3.1.0
 
 - [`989044a`](https://github.com/alpjs/ibex-react-redux/commit/989044a34ceb6c9f281bbfc666d6fb32f377a351) eslint-config-partridge 4, content-loaded (Christophe Hurpeau)
