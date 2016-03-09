@@ -1,7 +1,8 @@
-import { ConsoleLogger } from 'nightingale';
-import render from 'fody';
 import DefaultApp from 'fody-app';
 import ReduxApp from 'fody-redux-app';
+import contentLoaded from 'content-loaded';
+import render from 'fody';
+import { ConsoleLogger } from 'nightingale';
 import { createStore } from 'redux';
 
 const logger = new ConsoleLogger('ibex.react-redux');
@@ -50,14 +51,10 @@ export default function ibexReactRedux({ moduleDescriptor, initialData, element 
             });
         };
 
-        const context = Object.create(app.context);
-        if (document.readyState === 'complete') {
-            logger.debug('load react components, document is already ready');
-            context.render(moduleDescriptor, initialData);
-        } else {
-            logger.debug('waiting document ready');
-            document.addEventListener('DOMContentLoaded', () => {
-                logger.debug('load react components, document is ready');
+        if (moduleDescriptor) {
+            const context = Object.create(app.context);
+            contentLoaded().then(() => {
+                logger.debug('document ready');
                 context.render(moduleDescriptor, initialData);
             });
         }
