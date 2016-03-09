@@ -1,3 +1,7 @@
+### v3.1.0
+
+- [`989044a`](https://github.com/alpjs/ibex-react-redux/commit/989044a34ceb6c9f281bbfc666d6fb32f377a351) eslint-config-partridge 4, content-loaded (Christophe Hurpeau)
+
 ### v3.0.0
 
 ### Breaking Change
