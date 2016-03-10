@@ -1,3 +1,7 @@
+### v3.1.2
+
+- [`cbf17dd`](https://github.com/alpjs/ibex-react-redux/commit/cbf17ddaae928e22a3889f72bd8d8991aa4e5554) fix render data (Christophe Hurpeau)
+
 ### v3.1.1
 
 - [`e636768`](https://github.com/alpjs/ibex-react-redux/commit/e636768e6adf9ad212a569e9de8f95539a7eda94) upgrade dependencies (Christophe Hurpeau)
