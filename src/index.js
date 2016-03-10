@@ -22,13 +22,13 @@ export default function ibexReactRedux({ moduleDescriptor, initialData, element 
 
             if (store === undefined) {
                 if (reducer) {
-                    store = createStore(reducer, initialData);
+                    store = createStore(reducer, data);
                 }
             } else {
                 // replace state
                 const state = store.getState();
                 Object.keys(state).forEach(key => delete state[key]);
-                Object.assign(state, initialData);
+                Object.assign(state, data);
 
                 // replace reducer
                 if (reducer) {
